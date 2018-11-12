@@ -9,23 +9,25 @@ public class Piece {
 	// X coordinate
 	Integer xCoord;
 	
-	public Integer getXCoord() {
+	public int getXCoord() {
 		return xCoord;
 	}
 	
-	public void setXCoord(Integer x) {
+	public boolean setXCoord(Integer x) {
 		this.xCoord = x;
+		return true;
 	}
 	
 	// Y coordinate
 	Integer yCoord;
 	
-	public Integer getYCoord() {
+	public int getYCoord() {
 		return yCoord;
 	}
 	
-	public void setYCoord(Integer y) {
+	public boolean setYCoord(Integer y) {
 		this.yCoord = y;
+		return true;
 	}
 	
 	/*
