@@ -5,14 +5,18 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import controller.MovePieceController;
 import controller.SelectPieceController;
 import model.Model;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class Application extends JFrame{	
@@ -40,19 +44,6 @@ public class Application extends JFrame{
 		
 		// Instantiate content pane
 		contentPane = new PuzzleArea(model);
-		
-		// Create buttons
-		rightButton = new JButton(">");
-		contentPane.add(rightButton);
-		
-		leftButton = new JButton("<");
-		getContentPane().add(leftButton, BorderLayout.WEST);
-		
-		upButton = new JButton("^");
-		getContentPane().add(upButton, BorderLayout.NORTH);
-		
-		downButton = new JButton("v");
-		getContentPane().add(downButton, BorderLayout.SOUTH);
 
 		// Create controller for mouse clicks within PuzzleArea
 		contentPane.addMouseListener(new MouseAdapter() {
@@ -63,11 +54,56 @@ public class Application extends JFrame{
 					new SelectPieceController(model, Application.this).selectPiece(c.getPoint());
 				}
 			}
-		});		
+		});
 		
+		// Set borders for content pane
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		// Set layout manager to null
+		contentPane.setLayout(null);
+		
+		// Create buttons
+		rightButton = new JButton(">");
+		rightButton.setBounds(430, 450, 50, 20);
+		rightButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MovePieceController(model, Application.this).movePiece("RIGHT");
+			}
+		});
+		contentPane.add(rightButton);
+		
+		leftButton = new JButton("<");
+		leftButton.setBounds(380, 450, 50, 20);
+		leftButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MovePieceController(model, Application.this).movePiece("LEFT");
+			}
+		});
+		contentPane.add(leftButton);
+		
+		upButton = new JButton("^");
+		upButton.setBounds(405, 430, 50, 20);
+		upButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MovePieceController(model, Application.this).movePiece("UP");
+			}
+		});
+		contentPane.add(upButton);
+		
+		downButton = new JButton("v");
+		downButton.setBounds(405, 470, 50, 20);
+		downButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MovePieceController(model, Application.this).movePiece("DOWN");
+			}
+		});
+		contentPane.add(downButton);
 	}
 	
 	Application () {

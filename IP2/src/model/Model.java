@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Optional;
 
 public class Model {
 	/** Attributes **/
@@ -41,9 +40,8 @@ public class Model {
 		selected = p;
 	}
 	// Return the selected piece, if one has been selected
-	public Optional<Piece> getSelected() {
-		Optional<Piece> option = Optional.ofNullable(selected);
-		return option;
+	public Piece getSelected() {
+		return selected;
 	}	
 	// Determine if the piece is the currently selected one
 	public boolean isSelected(Piece p) {
