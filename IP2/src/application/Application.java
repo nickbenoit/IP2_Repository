@@ -2,10 +2,12 @@ package application;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import controller.MovePieceController;
+import controller.ResetPuzzleController;
 import controller.SelectPieceController;
 import model.Model;
 
@@ -27,6 +29,7 @@ public class Application extends JFrame{
 	JButton leftButton;
 	JButton upButton;
 	JButton downButton;
+	JButton resetButton;
 	
 	Model model;
 		
@@ -104,6 +107,27 @@ public class Application extends JFrame{
 			}
 		});
 		contentPane.add(downButton);
+		
+		resetButton = new JButton("Reset");
+		resetButton.setBounds(495, 300, 70, 20);
+		resetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//new ResetPuzzleController(model, Application.this).resetPuzzle();
+//				JOptionPane confirmPane = new JOptionPane();
+//				Object[] options = { "OK", "CANCEL" };
+//				int selectedValue = JOptionPane.showOptionDialog(null, "Click OK to reset", "Confirm Reset", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+//				if (selectedValue == JOptionPane.OK_OPTION) {
+//					new ResetPuzzleController(model, Application.this).resetPuzzle();
+//				}
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to reset?", "Warning", dialogButton);
+				if (dialogResult == JOptionPane.YES_OPTION) {
+					new ResetPuzzleController(model, Application.this).resetPuzzle();
+				}
+			}
+		});
+		contentPane.add(resetButton);
 	}
 	
 	Application () {
