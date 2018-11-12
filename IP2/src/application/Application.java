@@ -2,6 +2,7 @@ package application;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
@@ -30,6 +31,7 @@ public class Application extends JFrame{
 	JButton upButton;
 	JButton downButton;
 	JButton resetButton;
+	JLabel counter;
 	
 	Model model;
 		
@@ -128,6 +130,11 @@ public class Application extends JFrame{
 			}
 		});
 		contentPane.add(resetButton);
+		
+		counter = new JLabel();
+		counter.setText("Moves: " + String.valueOf(model.moves()));
+		counter.setBounds(495, 350, 70, 20);
+		contentPane.add(counter);
 	}
 	
 	Application () {
@@ -137,5 +144,9 @@ public class Application extends JFrame{
 	// Provide access to content pane
 	public PuzzleArea getPuzzleArea() {
 		return contentPane;
+	}
+	// Provide access to move counter
+	public void setCounterText(String msg) {
+		counter.setText(msg);
 	}
 }

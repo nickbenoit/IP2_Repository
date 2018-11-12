@@ -36,6 +36,10 @@ public class ResetPuzzleController {
 		// Reset the puzzle
 		model.setList(InitialPieces.initialize());
 		
+		// Reset the move counter
+		model.resetCounter();
+		app.setCounterText("Moves: " + String.valueOf(model.moves()));
+		
 		// Update the display
 		app.repaint();
 	}

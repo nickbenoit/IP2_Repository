@@ -44,6 +44,9 @@ public class MovePieceController {
 			} else if (eventType == "DOWN") {
 				piece.setYCoord(piece.getYCoord() + 100);
 			}
+			// Update the move counter
+			model.incrementCounter();
+			app.setCounterText("Moves: " + String.valueOf(model.moves()));
 		}
 		
 		// Update the display
