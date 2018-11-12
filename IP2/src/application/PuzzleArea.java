@@ -26,13 +26,18 @@ public class PuzzleArea extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
+		// Draw the board edge
+		Rectangle b = new Rectangle(0,0,404,504);
+		g.setColor(Color.black);
+		g.drawRect((int)b.getX(), (int)b.getY(), (int)b.getWidth(), (int)b.getHeight());
+		
 		// Create an iterator to paint all the pieces on the board
 		Iterator<Piece> it = model.iterator();
 		while (it.hasNext()) {
 			Piece p = it.next();
 			
 			// Create a rectangle with the puzzle piece's dimensions
-			Rectangle r = new Rectangle(p.getXCoord() + 1, p.getYCoord() + 1, p.getWidth() - 1, p.getHeight() - 1);
+			Rectangle r = new Rectangle(p.getXCoord() + 4, p.getYCoord() + 4, p.getWidth() - 4, p.getHeight() - 4);
 			
 			// Set the color for the rectangles outline
 			g.setColor(Color.black);
