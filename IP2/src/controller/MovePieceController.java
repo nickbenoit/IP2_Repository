@@ -1,6 +1,8 @@
 package controller;
 
 import java.awt.event.KeyEvent;
+import java.util.Iterator;
+
 import application.Application;
 import model.Model;
 import model.Piece;
@@ -52,22 +54,49 @@ public class MovePieceController {
 	// First check if the move will put the piece out of bounds. Then check if the spot is available.
 	public boolean canMove(Piece piece, String eventType) {
 		if (eventType == "RIGHT") { // If the right arrow key has been selected (to move the piece right)
-			if (piece.getXCoord() + piece.getWidth() + 100 <= 400) {
+			int rightEdge = piece.getXCoord() + piece.getWidth();
+			if (rightEdge + 100 <= 400 &&
+				openSpot(rightEdge + 50, piece.getYCoord() + 50)) {
 				return true;
 			}
 		} else if (eventType == "LEFT") { // If the left arrow key has been selected (to move the piece left)
-			if (piece.getXCoord() - 100 >= 0) {
+			int leftEdge = piece.getXCoord();
+			if (leftEdge - 100 >= 0 &&
+				openSpot(leftEdge - 50, piece.getYCoord() + 50)) {
 				return true;
 			}
 		} else if (eventType == "UP") {
-			if (piece.getYCoord() - 100 >= 0) {
+			int topEdge = piece.getYCoord();
+			if (topEdge - 100 >= 0 &&
+				openSpot(piece.getXCoord() + 50, topEdge - 50)) {
 				return true;
 			}
 		} else if (eventType == "DOWN") {
-			if (piece.getYCoord() + piece.getHeight() + 100 <= 500) {
+			int bottomEdge = piece.getYCoord() + piece.getHeight();
+			if (bottomEdge + 100 <= 500 &&
+				openSpot(piece.getXCoord() + 50, bottomEdge + 50)) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public boolean openSpot(Integer x, Integer y) {
+		// Create an iterator to search through the pieces to see if one occupies the requested spot
+		Iterator<Piece> it = model.iterator();
+		while (it.hasNext()) {
+			Piece p = it.next();
+			
+			// Check if the coordinates match the requested spot. If so its a match, and cancel move
+			if (!model.isSelected(p) &&
+				p.getXCoord() <= x && 
+				p.getXCoord() + p.getWidth() >= x &&
+				p.getYCoord() <= y &&
+				p.getYCoord() + p.getHeight() >= y) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }
