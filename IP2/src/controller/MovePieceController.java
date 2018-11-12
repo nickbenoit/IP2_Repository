@@ -58,23 +58,31 @@ public class MovePieceController {
 		if (eventType == "RIGHT") { // If the right arrow key has been selected (to move the piece right)
 			int rightEdge = piece.getXCoord() + piece.getWidth();
 			if (rightEdge + 100 <= 400 &&
-				openSpot(rightEdge + 50, piece.getYCoord() + 50)) {
+				openSpot(rightEdge + 50, piece.getYCoord() + piece.getHeight()/2)) {
 				return true;
 			}
 		} else if (eventType == "LEFT") { // If the left arrow key has been selected (to move the piece left)
 			int leftEdge = piece.getXCoord();
 			if (leftEdge - 100 >= 0 &&
-				openSpot(leftEdge - 50, piece.getYCoord() + 50)) {
+				openSpot(leftEdge - 50, piece.getYCoord() + piece.getHeight()/2)) {
 				return true;
 			}
-		} else if (eventType == "UP") {
+		} else if (eventType == "UP") { // If the up arrow key has been selected (to move the piece up)
 			int topEdge = piece.getYCoord();
 			if (topEdge - 100 >= 0 &&
 				openSpot(piece.getXCoord() + 50, topEdge - 50)) {
 				return true;
 			}
-		} else if (eventType == "DOWN") {
+		} else if (eventType == "DOWN") { // If the down arrow key has been selected (to move the piece down)
 			int bottomEdge = piece.getYCoord() + piece.getHeight();
+			
+			// Check if piece is primary piece
+			if (piece.isPrimary()) {
+				if (bottomEdge + 100 > 500) {
+					app.displayWinScreen();
+				}
+			}
+			
 			if (bottomEdge + 100 <= 500 &&
 				openSpot(piece.getXCoord() + 50, bottomEdge + 50)) {
 				return true;

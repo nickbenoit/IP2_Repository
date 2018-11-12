@@ -115,15 +115,9 @@ public class Application extends JFrame{
 		resetButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//new ResetPuzzleController(model, Application.this).resetPuzzle();
-//				JOptionPane confirmPane = new JOptionPane();
-//				Object[] options = { "OK", "CANCEL" };
-//				int selectedValue = JOptionPane.showOptionDialog(null, "Click OK to reset", "Confirm Reset", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
-//				if (selectedValue == JOptionPane.OK_OPTION) {
-//					new ResetPuzzleController(model, Application.this).resetPuzzle();
-//				}
+				// Create a confirmation box to make sure the user wants to reset the puzzle
 				int dialogButton = JOptionPane.YES_NO_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to reset?", "Warning", dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog(Application.this, "Would you like to reset?", "Warning", dialogButton);
 				if (dialogResult == JOptionPane.YES_OPTION) {
 					new ResetPuzzleController(model, Application.this).resetPuzzle();
 				}
@@ -131,12 +125,16 @@ public class Application extends JFrame{
 		});
 		contentPane.add(resetButton);
 		
+		// Create a counter on the application that will track the number of moves
 		counter = new JLabel();
 		counter.setText("Moves: " + String.valueOf(model.moves()));
 		counter.setBounds(495, 350, 70, 20);
 		contentPane.add(counter);
+		
+		
 	}
 	
+	/** Methods **/
 	Application () {
 		this (new Model());
 	}
@@ -148,5 +146,10 @@ public class Application extends JFrame{
 	// Provide access to move counter
 	public void setCounterText(String msg) {
 		counter.setText(msg);
+	}
+	
+	// Display win screen
+	public void displayWinScreen() {
+		JOptionPane.showMessageDialog(Application.this, "You've won!", "Win Screen", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
