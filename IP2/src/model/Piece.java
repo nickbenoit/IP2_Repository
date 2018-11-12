@@ -46,6 +46,20 @@ public class Piece {
 		return height;
 	}
 	
+	/*
+	 * The 2x2 piece is the primary piece of the puzzle. If it crosses the line, the player has won.
+	 * It is given a different color to distinguish it from the other pieces. 
+	 */
+	Boolean primary = false;
+	
+	public boolean isPrimary() {
+		return primary;
+	}
+	
+	public void setPrimary(Boolean b) {
+		this.primary = b;
+	}
+	
 	/** Constructor **/
 	public Piece (Integer x, Integer y, Integer w, Integer h) {
 		super();

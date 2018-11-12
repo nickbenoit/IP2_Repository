@@ -81,6 +81,9 @@ public class InitialPieces {
 		list.add(new Piece(x9, y9, w9, h9));
 		list.add(new Piece(x10, y10, w10, h10));
 		
+		// Make piece two the primary piece
+		list.get(1).setPrimary(true);
+		
 		// Return the list of pieces
 		return(list);
 	}

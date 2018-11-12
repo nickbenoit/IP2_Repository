@@ -40,10 +40,19 @@ public class PuzzleArea extends JPanel{
 			g.drawRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight());
 			
 			// Set the color for drawing the unselected rectangles
-			g.setColor(Color.gray);
+			if (p.isPrimary()) {
+				g.setColor(Color.red);
+			} else {
+				g.setColor(Color.gray);
+			}
+			
 			// If the piece is selected, change the color to black to indicate selection
 			if (model.isSelected(p)) {
-				g.setColor(Color.darkGray);
+				if (p.isPrimary()) {
+					g.setColor(Color.magenta);
+				} else {
+					g.setColor(Color.darkGray);
+				}
 			}
 			
 			g.fillRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight());

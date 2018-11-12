@@ -40,7 +40,7 @@ public class Application extends JFrame{
 		// Set close functionality
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		// Set bounds of the application
-		setBounds(100, 100, 500, 600);
+		setBounds(100, 100, 600, 600);
 		
 		// Instantiate content pane
 		contentPane = new PuzzleArea(model);
@@ -66,7 +66,7 @@ public class Application extends JFrame{
 		
 		// Create buttons
 		rightButton = new JButton(">");
-		rightButton.setBounds(430, 450, 50, 20);
+		rightButton.setBounds(530, 250, 50, 20);
 		rightButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -76,7 +76,7 @@ public class Application extends JFrame{
 		contentPane.add(rightButton);
 		
 		leftButton = new JButton("<");
-		leftButton.setBounds(380, 450, 50, 20);
+		leftButton.setBounds(480, 250, 50, 20);
 		leftButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -86,7 +86,7 @@ public class Application extends JFrame{
 		contentPane.add(leftButton);
 		
 		upButton = new JButton("^");
-		upButton.setBounds(405, 430, 50, 20);
+		upButton.setBounds(505, 230, 50, 20);
 		upButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -96,7 +96,7 @@ public class Application extends JFrame{
 		contentPane.add(upButton);
 		
 		downButton = new JButton("v");
-		downButton.setBounds(405, 470, 50, 20);
+		downButton.setBounds(505, 270, 50, 20);
 		downButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
