@@ -32,7 +32,7 @@ public class MovePieceController {
 	 * User requests to move the selected piece. If the piece can move in the requested direction, the 
 	 * piece is moved in that direction. The direction is given by the code from the arrow key.
 	 */
-	public void movePiece(String eventType) {
+	public boolean movePiece(String eventType) {
 		Piece piece = model.getSelected();
 		if (canMove(piece, eventType)) {
 			if (eventType == "RIGHT") {
@@ -47,10 +47,13 @@ public class MovePieceController {
 			// Update the move counter
 			model.incrementCounter();
 			app.setCounterText("Moves: " + String.valueOf(model.moves()));
+			
+			return true;
 		}
 		
 		// Update the display
 		app.repaint();
+		return false;
 	}
 	
 	// First check if the move will put the piece out of bounds. Then check if the spot is available.

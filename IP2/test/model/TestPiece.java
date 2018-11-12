@@ -3,7 +3,8 @@ package model;
 import junit.framework.TestCase;
 
 public class TestPiece extends TestCase {
-	public void testCoord() {
+	// Test piece coordinates and dimensions
+	public void testPieceVar() {
 		// Create a new piece
 		Piece piece = new Piece(0,0,100,100);
 		

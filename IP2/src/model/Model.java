@@ -27,9 +27,13 @@ public class Model {
 	}
 	
 	/** Methods **/
-	// Add a piece to the list
+	// Add the pieces to the list
 	public void setList(ArrayList<Piece> list) {
 		this.list = list;
+	}
+	// Return the list
+	public ArrayList<Piece> getList(){
+		return list;
 	}
 	
 	// Return pieces using @return iterator of pieces
