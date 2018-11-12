@@ -47,12 +47,10 @@ public class MovePieceController {
 			// Update the move counter
 			model.incrementCounter();
 			app.setCounterText("Moves: " + String.valueOf(model.moves()));
-			
+			// Update the display
+			app.repaint();
 			return true;
 		}
-		
-		// Update the display
-		app.repaint();
 		return false;
 	}
 	
